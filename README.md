@@ -1,8 +1,33 @@
 # PrefixStore
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/prefix_store`. To experiment with that code, run `bin/console` for an interactive prompt.
+PrefixStore is an extension to ActiveRecord and gives an addictional method prefix_store_accessor which creates store_accessor getters and setters with prefix named by column.
 
-TODO: Delete this and the text above, and describe your gem
+Example:
+```ruby
+# == Schema Information
+#
+# Table name: Car
+#
+#  id                                   :integer          not null, primary key
+#  user_id                              :integer
+#  name                                 :string(255)
+#  spec                                 :json             default({}), not null
+#
+
+class Car < ActiveRecord::Base
+
+    prefix_store_accessor   :spec,
+                            :engine,
+                            :v_max_km,
+                            :country
+    
+    ...
+end
+```
+    $ [1] pry(main)> Car.last.spec_v_max_km
+    $ Car Load (1.5ms)  SELECT "cars".* FROM "cars" ORDER BY "cars"."id" DESC LIMIT 1
+    $ => "225"
+
 
 ## Installation
 
