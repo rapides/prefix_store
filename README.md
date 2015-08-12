@@ -1,8 +1,39 @@
 # PrefixStore
 
-PrefixStore is an extension to ActiveRecord and gives an addictional method prefix_store_accessor which creates store_accessor getters and setters with prefix named by column.
+PrefixStore is an ActiveRecord extension to give an addictional method prefix_store_accessor which creates store_accessor getters and setters with prefix named by column.
 
-Example:
+# Usage
+
+Default:
+
+```ruby
+# == Schema Information
+#
+# Table name: Car
+#
+#  id                                   :integer          not null, primary key
+#  user_id                              :integer
+#  name                                 :string(255)
+#  spec                                 :json             default({}), not null
+#
+
+class Car < ActiveRecord::Base
+
+    store_accessor  :spec,
+                    :engine,
+                    :v_max_km,
+                    :country
+    
+    ...
+end
+```
+    $ [1] pry(main)> Car.last.v_max_km
+    $ Car Load (1.5ms)  SELECT "cars".* FROM "cars" ORDER BY "cars"."id" DESC LIMIT 1
+    $ => "225"
+
+
+Solution with a prefix accessor:
+
 ```ruby
 # == Schema Information
 #
@@ -44,10 +75,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install prefix_store
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
