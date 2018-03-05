@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Add column name as prefix before your store_accessor attributes.}
   spec.description   = %q{This gem includes addictional method prefix_store_accessor to ActiveRecord::Base.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/rapides/prefix_store"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
